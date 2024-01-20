@@ -1,0 +1,101 @@
+﻿
+<div class="page-header card">
+    <div class="row align-items-end">
+        
+              
+                    <div class="col-lg-8">
+                        <div class="page-header-title">
+                            <div class="d-inline">
+                                @foreach (var fc in ViewBag.fleetcompany)
+                                {
+
+                                    <h2>@fc.CompanyName</h2>
+
+                                    <span>Profile and subscription details</span>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <button class="btn btn-warning" data-toggle="modal" href="#VehicleModal"><i class="icofont icofont-paper-plane"></i>Modify</button>
+                        <button class="btn btn-danger" data-toggle="modal" href="#BillModal"><i class="icofont icofont-plus"></i>Renew Subscription</button>
+
+                    </div>
+                
+             
+       
+
+    </div>
+</div>
+
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-block">
+                    
+                        <div class="row">
+                            @foreach (var fc in ViewBag.fleetcompany)
+                            {
+                                <div class="col-sm-12 col-xl-3 m-b-30">Company Phone : @fc.Phone
+                            <br />Contact Person : @fc.ContactPerson
+                            </div>
+                                <div class="col-sm-12 col-xl-3 m-b-30">Company Email : @fc.EmailID
+                            <br />Mobile : @fc.Mobile
+                            </div>
+                                <div class="col-sm-12 col-xl-3 m-b-30">Country : @fc.Country</div>
+                                <div class="col-sm-12 col-xl-3 m-b-30">City : @fc.City</div>
+                             
+
+                            }
+                        </div>
+                    
+
+                        </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-block">
+
+
+                   
+                    <div class="col-sm-12 col-xl-4 m-b-30">
+                        <h4>Subscription</h4>
+                        @if (ViewBag.Subscriptions.Count > 0)
+                        {
+                            <table class="table">
+                                <tr>
+
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+
+                                </tr>
+                                @foreach (var vr in ViewBag.Subscriptions)
+                                {
+                                    <tr>
+                                        <td>@vr.StartDate.ToString("dd-MMM-yyyy")</td>
+                                        <td>@vr.EndDate.ToString("dd-MMM-yyyy")</td>
+                                    </tr>
+                                }
+                            </table>
+                        }
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>

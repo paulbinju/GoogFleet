@@ -1,0 +1,1032 @@
+﻿ <!-- Required Fremwork -->
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>@ViewBag.PageTitle</title>
+    <meta name="robots" content="nofollow" />
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js")"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="@Url.Content("~/assets/images/favicon.ico")" type="image/x-icon">
+
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+    <script src="@Url.Content("~/Content/jquery-3.2.1.min.js")"></script>
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/bootstrap/css/bootstrap.min.css")">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/icon/themify-icons/themify-icons.css")">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/icon/icofont/css/icofont.css")">
+    <!-- flag icon framework css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/pages/flag-icon/flag-icon.min.css")">
+    <!-- Menu-Search css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/pages/menu-search/css/component.css")">
+    <!-- Date-time picker css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/pages/advance-elements/css/bootstrap-datetimepicker.css")">
+    <!-- Date-range picker css  -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/bootstrap-daterangepicker/css/daterangepicker.css")" />
+    <!-- Date-Dropper css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/datedropper/css/datedropper.min.css")" />
+    <!-- Color Picker css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/spectrum/css/spectrum.css")" />
+    <!-- Mini-color css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/jquery-minicolors/css/jquery.minicolors.css")" />
+
+
+
+
+
+
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/style.css")">
+
+
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/jquery.mCustomScrollbar.css")">
+</head>
+
+<body>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            @Html.Partial("_header")
+
+           
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    @Html.Partial("_sidemenu")
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-header card">
+                                        <div class="row align-items-end">
+
+
+                                            <div class="col-lg-5">
+                                                <div class="page-header-title">
+                                                    <div class="d-inline">
+                                                        @foreach (var vehicle in ViewBag.Vehicle)
+                                                        {
+                                                            <h4>@vehicle.Brand</h4>
+                                                            <span style="font-size:12px;font-weight:bold"> Manufactured: @Convert.ToDateTime(vehicle.YearofManufacture).ToString("MMM yyyy")</span>
+                                                        }
+
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <button class="btn btn-warning" data-toggle="modal" href="#VehicleModal"><i class="icofont icofont-paper-plane"></i>Modify</button>
+                                                <button class="btn btn-primary" data-toggle="modal" href="#InsuranceModal"><i class="icofont icofont-plus"></i>Insurance</button>
+                                                <button class="btn btn-success" data-toggle="modal" href="#AlertModal"><i class="icofont icofont-plus"></i>Alert</button>
+                                                <button class="btn btn-warning" data-toggle="modal" href="#RegistrationModal"><i class="icofont icofont-plus"></i>Registration</button>
+                                                <button class="btn btn-primary" data-toggle="modal" href="#BillModal"><i class="icofont icofont-plus"></i>Bill</button>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+
+                                                    <div class="card-block">
+
+                                                        @foreach (var vehicle in ViewBag.Vehicle)
+                                                        {
+
+
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th>Name</th>
+                                                                    <th>Vehicle Group</th>
+                                                                    <th>Vehicle Type</th>
+                                                                    <th>Registration No.</th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>@vehicle.VehicleNoName</td>
+                                                                    <td>@vehicle.VehicleGroup</td>
+                                                                    <td>@vehicle.VehicleType</td>
+                                                                    <td>@vehicle.RegistrationNo</td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4">
+                                                                        <b>Note:-</b><br />
+                                                                        @vehicle.GPSURL
+                                                                        <b>Note:-</b><br />
+                                                                        @vehicle.Note
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        }
+
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="card">
+
+                                                    <div class="card-block">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Alerts</h4>
+
+                                                                @foreach (var va in ViewBag.VehicleAlerts)
+                                                                {
+
+                                                                    <div style="border-bottom:1px solid #ececec;font-size:11px;padding:5px 0">
+                                                                        @va.Alert - Due on: @va.DueDate.ToString("dd-MMM-yyyy")
+                                                                    </div>
+                                                                }
+
+
+                                                            </div>
+
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Insurance</h4>
+                                                                @if (ViewBag.VehicleInsurance.Count > 0)
+                                                                {
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th>Insurance</th>
+                                                                            <th>Start Date</th>
+                                                                            <th>End Date</th>
+
+                                                                        </tr>
+                                                                        @foreach (var vi in ViewBag.VehicleInsurance)
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@vi.Insurance</td>
+                                                                                <td>@vi.StartDate.ToString("dd-MMM-yyyy")</td>
+                                                                                <td>@vi.EndDate.ToString("dd-MMM-yyyy")</td>
+                                                                            </tr>
+                                                                        }
+                                                                    </table>
+                                                                }
+                                                            </div>
+
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Registration</h4>
+                                                                @if (ViewBag.VehicleRegistrations.Count > 0)
+                                                                {
+                                                                    <table class="table">
+                                                                        <tr>
+
+                                                                            <th>Start Date</th>
+                                                                            <th>End Date</th>
+
+                                                                        </tr>
+                                                                        @foreach (var vr in ViewBag.VehicleRegistrations)
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@vr.StartDate.ToString("dd-MMM-yyyy")</td>
+                                                                                <td>@vr.EndDate.ToString("dd-MMM-yyyy")</td>
+                                                                            </tr>
+                                                                        }
+                                                                    </table>
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                </div>
+                                                @if (ViewBag.VehicleUsers.Count > 0)
+                                                {
+                                                    <div class="card">
+
+                                                        <div class="card-block">
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                    <h4 class="sub-title">Allocated Users</h4>
+
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>Mobile No.</th>
+                                                                            <th>Email ID</th>
+                                                                            <th>Start Date</th>
+                                                                            <th>End Date</th>
+                                                                            <th>Modify</th>
+                                                                        </tr>
+                                                                        @foreach (var vu in ViewBag.VehicleUsers)
+                                                                        {
+                                                                            <tr>
+                                                                                <td>@vu.UserName (@vu.UserType)</td>
+                                                                                <td>@vu.MobileNo</td>
+                                                                                <td>@vu.EmailID</td>
+                                                                                <td>@vu.StartDate.ToString("dd-MMM-yyyy HH:mm:ss tt")</td>
+                                                                                <td>@(vu.EndDate == null ? "" : vu.EndDate.ToString("dd-MMM-yyyy HH:mm:ss tt"))</td>
+
+                                                                                <td>
+                                                                                    <a class="pcoded-badge label label-warning" data-toggle="modal" href="#TrafficContraventionsModal-@vu.UserID"><i class="icofont icofont-plus"></i> Traffic Contraventions</a>
+                                                                                    <div class="modal fade modal-dialog-center" id="TrafficContraventionsModal-@vu.UserID" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                                        <div class="modal-dialog modal-lg">
+                                                                                            <div class="modal-content-wrap">
+                                                                                                <div class="modal-content">
+                                                                                                    <div class="modal-header">
+                                                                                                        <h4 class="modal-title">Add Traffic Contraventions</h4>
+
+                                                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                                                    </div>
+                                                                                                    @using (Html.BeginForm("VehicleTrafficContraventions", "Vehicle"))
+                                                                                                    {
+                                                                                                        <div class="modal-body">
+                                                                                                            <div class="form-horizontal">
+
+                                                                                                                <div class="form-group">
+                                                                                                                    <div class="col-md-10">
+                                                                                                                        Name<br />
+                                                                                                                        @vu.UserName
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                    <div class="col-md-10">
+                                                                                                                        Date<br />
+                                                                                                                        <input type="datetime-local" name="TrafficContraventionDate" required class="form-control" />
+
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                    <div class="col-md-10">
+                                                                                                                        Note<br />
+                                                                                                                        <textarea name="description" class="form-control" rows="5"></textarea>
+
+                                                                                                                    </div>
+                                                                                                                </div>
+
+                                                                                                                <div class="form-group">
+                                                                                                                    <div class="col-md-offset-2 col-md-10">
+
+                                                                                                                        <input type="hidden" name="VehicleID" value="@ViewBag.VehicleID" />
+                                                                                                                        <input type="hidden" name="UserID" value="@vu.UserID" />
+                                                                                                                        <input type="hidden" name="VehicleUserID" value="@vu.VehicleUserID" />
+
+
+                                                                                                                        <button class="btn btn-danger">Add Traffic Contravention</button>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    }
+                                                                                                    <br style="clear:both" />
+                                                                                                    <div class="modal-footer">
+
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    @if (vu.EndDate == null)
+                                                                                    {
+                                                                                        <a title="Contract complete or time finished" class="pcoded-badge label label-danger" data-toggle="modal" href="#RemoveAllocationModal">Remove Allocation</a>
+
+                                                                                        <div class="modal fade modal-dialog-center" id="RemoveAllocationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                                            <div class="modal-dialog modal-lg">
+                                                                                                <div class="modal-content-wrap">
+                                                                                                    <div class="modal-content">
+                                                                                                        <div class="modal-header">
+                                                                                                            <h4 class="modal-title">Remove Allocation</h4>
+
+                                                                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                                                        </div>
+                                                                                                        @using (Html.BeginForm("VehicleRemoveAllocation", "Vehicle"))
+                                                                                                        {
+                                                                                                            <div class="modal-body">
+                                                                                                                <div class="form-horizontal">
+                                                                                                                    <div class="form-group">
+                                                                                                                        <div class="col-md-10">
+                                                                                                                            End Date<br />
+                                                                                                                            <input type="datetime-local" name="enddate" required class="form-control" />
+                                                                                                                            <input type="hidden" name="startdate" required class="form-control" value="@vu.StartDate" />
+                                                                                                                            <input type="hidden" name="UserID" required class="form-control" value="@vu.UserID" />
+
+
+
+                                                                                                                        </div>
+                                                                                                                    </div>
+
+                                                                                                                    <div class="form-group">
+                                                                                                                        <div class="col-md-10">
+                                                                                                                            Note<br />
+                                                                                                                            <textarea name="note" class="form-control" rows="4">@vu.Note</textarea>
+
+                                                                                                                        </div>
+                                                                                                                    </div>
+
+
+                                                                                                                    <div class="form-group">
+                                                                                                                        <div class="col-md-offset-2 col-md-10">
+                                                                                                                            <input type="hidden" name="VehicleUserID" value="@vu.VehicleUserID" />
+                                                                                                                            <input type="hidden" name="VehicleID" value="@ViewBag.VehicleID" />
+                                                                                                                            <button class="btn btn-danger">Remove Allocation</button>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        }
+                                                                                                        <br style="clear:both" />
+                                                                                                        <div class="modal-footer">
+
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    }
+                                                                                </td>
+
+
+                                                                            </tr>
+                                                                        }
+                                                                    </table>
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                <div class="card">
+
+                                                    <div class="card-block">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-xl-4 m-b-30">
+                                                                <h4 class="sub-title">Traffic Contraventions</h4>
+
+                                                                @foreach (var tc in ViewBag.TrafficContraventions)
+                                                                {
+
+                                                                    <div style="border-bottom:1px solid #ececec;font-size:11px;padding:5px 0">
+                                                                        @tc.UserName - Date: @tc.TrafficContraventionsDate.ToString("dd-MMM-yyyy hh:mm tt")<br />@tc.Description
+                                                                    </div>
+                                                                }
+
+
+                                                            </div>
+
+                                                            <div class="col-sm-12 col-xl-8 m-b-30">
+                                                                <h4 class="sub-title">Bills</h4>
+                                                                @if (ViewBag.VehicleBills.Count > 0)
+                                                                {
+                                                                    <table class="table">
+                                                                        <tr>
+                                                                            <th>Bill No.</th>
+                                                                            <th>Bill Date</th>
+                                                                            <th>Amount</th>
+                                                                            <th>Details</th>
+
+                                                                        </tr>
+                                                                        @foreach (var vb in ViewBag.VehicleBills)
+                                                                        {
+                                                                        <tr>
+                                                                            <td>@vb.BillNo</td>
+                                                                            <td>@vb.BillDate.ToString("dd-MMM-yyyy hh:mm tt")</td>
+                                                                            <td>@vb.TotalAmount</td>
+                                                                            <td><a class="pcoded-badge label label-success" href="@Url.Content("~/BillDetail/"+vb.BillID)">View Bill Details</a></td>
+                                                                        </tr>
+                                                                        }
+
+                                                                    </table>
+                                                                }
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+
+
+
+
+
+                                                </div>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/jquery/js/jquery.min.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/jquery-ui/js/jquery-ui.min.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/popper.js/js/popper.min.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/bootstrap/js/bootstrap.min.js")"></script>
+                                                <!-- jquery slimscroll js -->
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/jquery-slimscroll/js/jquery.slimscroll.js")"></script>
+                                                <!-- modernizr js -->
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/modernizr/js/modernizr.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/modernizr/js/css-scrollbars.js")"></script>
+
+                                                <!-- Bootstrap date-time-picker js -->
+                                                <script type="text/javascript" src="@Url.Content("~/assets/pages/advance-elements/moment-with-locales.min.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/assets/pages/advance-elements/bootstrap-datetimepicker.min.js")"></script>
+                                                <!-- Date-range picker js -->
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/bootstrap-daterangepicker/js/daterangepicker.js")"></script>
+                                                <!-- Date-dropper js -->
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/datedropper/js/datedropper.min.js")"></script>
+                                                <!-- Color picker js -->
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/spectrum/js/spectrum.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/jscolor/js/jscolor.js")"></script>
+                                                <!-- Mini-color js -->
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/jquery-minicolors/js/jquery.minicolors.min.js")"></script>
+                                                <!-- i18next.min.js -->
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/i18next/js/i18next.min.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/bower_components/jquery-i18next/js/jquery-i18next.min.js")"></script>
+                                                <!-- Custom js -->
+
+                                                <script type="text/javascript" src="@Url.Content("~/assets/pages/advance-elements/custom-picker.js")"></script>
+                                                <script src="@Url.Content("~/assets/js/pcoded.min.js")"></script>
+                                                <script src="@Url.Content("~/assets/js/demo-12.js")"></script>
+                                                <script src="@Url.Content("~/assets/js/jquery.mCustomScrollbar.concat.min.js")"></script>
+                                                <script type="text/javascript" src="@Url.Content("~/assets/js/script.js")"></script>
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-dialog-center" id="VehicleModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content-wrap">
+                <div class="modal-content">
+                    <div class="col-sm-12">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Edit Vehicle</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                        </div>
+
+                        @foreach (var vehicle in ViewBag.Vehicle)
+                        {
+                            using (Html.BeginForm("VehicleDetailsEdit", "Vehicle"))
+                            {
+
+
+                                <div class="form-horizontal">
+
+                                    <input type="hidden" name="VehicleID" value="@ViewBag.VehicleID" />
+                                    <input type="hidden" name="LastVehicleGroupID" value="@vehicle.VehicleGroupID" />
+                                    <input type="hidden" name="VehicleNo" value="@vehicle.VehicleNo" />
+                                    <input type="hidden" name="VehicleNoName" value="@vehicle.VehicleNoName" />
+                                    <br />
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <b>Vehicle Group </b><span class="pull-right" style="font-size:9px;">( If not listed below <a data-toggle="modal" href="#VehicleGroupModal">Add Vehicle Group</a> )</span>
+                                            <br />
+                                            <select class="form-control" name="VehicleGroupID" id="VehicleGroupID"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <b>Vehicle Type</b><span class="pull-right" style="font-size:9px;">( If not listed below <a data-toggle="modal" href="#VehicleTypeModal">Add Vehicle Type</a> )</span><br />
+                                            <select class="form-control" name="VehicleTypeID" id="VehicleTypeID"></select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <b>Auto Brand</b><span class="pull-right" style="font-size:9px;">( If not listed below <a data-toggle="modal" href="#AutoBrandModal">Add Auto Brand</a> )</span><br />
+                                            <select id="AutoBrandID" class="form-control" name="AutoBrandID"></select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <b>Registration No</b><br />
+                                            <input type="text" name="RegistrationNo" class="form-control" value="@vehicle.RegistrationNo" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <b>Year of Manufacture </b><br />
+                                            <input type="text" name="YearofManufacture" class="form-control" value="@vehicle.YearofManufacture.ToString("MM/dd/yyyy")" />
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <div class="col-md-12">
+                                            <b>Note</b><br />
+                                            <textarea name="Note" class="form-control">@vehicle.Note</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+
+                                            <input class="btn btn-danger" type="submit" value="Save" />
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            }
+                        }
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-dialog-center" id="VehicleGroupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content-wrap">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Add Vehicle Group</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    Vehicle Group<br />
+                                    <input type="text" class="form-control" id="VehicleGroup" />
+                                    <input type="hidden" id="FleetCompanyID" value="@Session["FleetCompanyID"]" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button id="btnVehicleGroup" class="btn btn-danger">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br style="clear:both" />
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-dialog-center" id="VehicleTypeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content-wrap">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Add Vehicle Type</h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    Vehicle Type<br />
+                                    <input type="text" class="form-control" id="VehicleType" />
+                                    <input type="hidden" id="FleetCompanyID" value="@Session["FleetCompanyID"]" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button id="btnVehicleType" class="btn btn-danger">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br style="clear:both" />
+                    <div class="modal-footer">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-dialog-center" id="AutoBrandModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content-wrap">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Add Auto Brand</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    Make<br />
+                                    <input type="text" class="form-control" id="Make" />
+                                    <input type="hidden" id="FleetCompanyID" value="@Session["FleetCompanyID"]" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    Model<br />
+                                    <input type="text" class="form-control" id="Model" />
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <button id="btnAutoBrand" class="btn btn-danger">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br style="clear:both" />
+                    <div class="modal-footer">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-dialog-center" id="InsuranceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content-wrap">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Insurance</h4>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    @using (Html.BeginForm("Create", "Vehicle_Insurance"))
+                    {
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        Insurance Company<br />
+                                        <select name="InsuranceID" class="form-control">
+                                            @foreach (var ins in ViewBag.InsuranceCompanies)
+                                            {
+                                                <option value="@ins.InsuranceID">@ins.Insurance</option>
+                                            }
+                                        </select>
+                                        <input type="hidden" name="FleetCompanyID" value="@Session["FleetCompanyID"]" />
+                                        <input type="hidden" name="VehicleID" value="@ViewBag.VehicleID" />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        Start Date<br />
+                                        <input type="date" name="startdate" required class="form-control" />
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        End Date<br />
+                                        <input type="date" name="enddate" required class="form-control" />
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button class="btn btn-danger">Add Insurance</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <br style="clear:both" />
+                    <div class="modal-footer">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-dialog-center" id="AlertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content-wrap">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Alert</h4>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    @using (Html.BeginForm("Create", "Alert"))
+                    {
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        Due Date<br />
+                                        <input type="date" name="duedate" required class="form-control" />
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        Alert<br />
+                                        <textarea name="alert" rows="4" cols="50" class="form-control" required></textarea>
+
+                                        <input type="hidden" name="VehicleID" value="@ViewBag.VehicleID" />
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <button class="btn btn-danger">Add Alert</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <br style="clear:both" />
+                    <div class="modal-footer">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade modal-dialog-center" id="RegistrationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content-wrap">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Registration</h4>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    @using (Html.BeginForm("Create", "VehicleRegistration"))
+                    {
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        Start Date<br />
+                                        <input type="date" name="startdate" required class="form-control" />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        End Date<br />
+                                        <input type="date" name="enddate" required class="form-control" />
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="hidden" name="VehicleID" value="@ViewBag.VehicleID" />
+                                        <button class="btn btn-danger">Add Registration</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <br style="clear:both" />
+                    <div class="modal-footer">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade modal-dialog-center" id="BillModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content-wrap">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Bill</h4>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    @using (Html.BeginForm("Create", "Bill"))
+                    {
+                        <div class="modal-body">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        Bill Date<br />
+                                        <input type="date" name="billdate" required class="form-control" />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        Bill No.<br />
+                                        <input type="text" name="billno" required class="form-control" />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        Shop<br />
+
+                                        <select name="shopid" class="form-control" >
+                                            <option value="0">Select shop</option>
+                                            @foreach (var sh in ViewBag.Shop)
+                                            {
+                                                <option value="@sh.ShopID">@sh.ShopName</option>
+                                            }
+                                        </select>
+ 
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        Last Odometer reading<br />
+                                        <input type="text" name="odometer" class="form-control" />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        Total Amount<br />
+                                        <input type="text" name="TotalAmount" required class="form-control" />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-12">
+                                        <input type="hidden" name="VehicleID" value="@ViewBag.VehicleID" />
+                                        <button class="btn btn-danger">Save Bills</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <br style="clear:both" />
+                    <div class="modal-footer">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $(".editrow").hide();
+            getautobrand();
+            getvehiclegroup();
+            getvehicletype();
+
+
+            $("#btnVehicleGroup").click(function () {
+                $.getJSON('@Url.Content("~/App/AddVehicleGroup/")' + $("#FleetCompanyID").val() + '/' + $("#VehicleGroup").val() + '/?jsoncallback=?', function (data) {
+                }).done(function () {
+                    getvehiclegroup();
+                    $('#VehicleGroupModal').modal('hide');
+                });
+            });
+            $("#btnVehicleType").click(function () {
+                $.getJSON('@Url.Content("~/App/AddVehicleType/")' + $("#FleetCompanyID").val() + '/' + $("#VehicleType").val() + '/?jsoncallback=?', function (data) {
+                }).done(function () {
+                    getvehicletype();
+                    $('#VehicleTypeModal').modal('hide');
+                });
+            });
+
+            $("#btnAutoBrand").click(function () {
+                $.getJSON('@Url.Content("~/App/AddAutoBrand/")' + $("#FleetCompanyID").val() + '/' + $("#Make").val() + '/' + $("#Model").val() + '/?jsoncallback=?', function (data) {
+                }).done(function () {
+                    getautobrand();
+                    $('#AutoBrandModal').modal('hide');
+                });
+            });
+
+        });
+        function openrow(row) { $("#edit-" + row).show(2000); }
+
+    </script>
+
+    @foreach (var vehicle in ViewBag.Vehicle)
+    {
+
+        <script>
+
+
+        function getautobrand() {
+            $.getJSON('@Url.Content("~/App/AutoBrand/" + Session["FleetCompanyID"] + "/?jsoncallback=?")', function (data) {
+                         var content = "";
+                $("#AutoBrandID").empty();
+                $.each(data, function (key, value) {
+                    $("#AutoBrandID").append("<option value='" + data[key].AutoBrandID + "'>" + data[key].Make + "-" + data[key].Model + "</option>");
+                });
+                $("#AutoBrandID").val(@vehicle.AutoBrandID);
+
+             });
+         }
+
+         function getvehiclegroup() {
+            $.getJSON('@Url.Content("~/App/VehicleGroup/" + Session["FleetCompanyID"] + "/?jsoncallback=?")', function (data) {
+                 var content = "";
+                $("#VehicleGroupID").empty();
+                $.each(data, function (key, value) {
+                    $("#VehicleGroupID").append("<option value='" + data[key].VehicleGroupID + "'>" + data[key].VehicleGroup + "</option>");
+                 });
+                $("#VehicleGroupID").val(@vehicle.VehicleGroupID);
+             });
+         }
+
+         function getvehicletype() {
+            $.getJSON('@Url.Content("~/App/VehicleType/" + Session["FleetCompanyID"] + "/?jsoncallback=?")', function (data) {
+                 var content = "";
+                $("#VehicleTypeID").empty();
+                $.each(data, function (key, value) {
+                    $("#VehicleTypeID").append("<option value='" + data[key].VehicleTypeID + "'>" + data[key].VehicleType + "</option>");
+                });
+                $("#VehicleTypeID").val(@vehicle.VehicleTypeID);
+
+             });
+         }
+
+        </script>
+
+    }
+
+</body>
+
+</html>

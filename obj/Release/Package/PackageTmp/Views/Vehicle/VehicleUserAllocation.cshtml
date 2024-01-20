@@ -1,0 +1,355 @@
+﻿ <!-- Required Fremwork -->
+@{ 
+    Layout = null;
+}
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>@ViewBag.PageTitle</title>
+    <meta name="robots" content="nofollow" />
+    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 10]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js")"></script>
+      <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="@Url.Content("~/assets/images/favicon.ico")" type="image/x-icon">
+
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+    <script src="@Url.Content("~/Content/jquery-3.2.1.min.js")"></script>
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/bootstrap/css/bootstrap.min.css")">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/icon/themify-icons/themify-icons.css")">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/icon/icofont/css/icofont.css")">
+    <!-- flag icon framework css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/pages/flag-icon/flag-icon.min.css")">
+    <!-- Menu-Search css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/pages/menu-search/css/component.css")">
+    <!-- Date-time picker css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/pages/advance-elements/css/bootstrap-datetimepicker.css")">
+    <!-- Date-range picker css  -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/bootstrap-daterangepicker/css/daterangepicker.css")" />
+    <!-- Date-Dropper css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/datedropper/css/datedropper.min.css")" />
+    <!-- Color Picker css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/spectrum/css/spectrum.css")" />
+    <!-- Mini-color css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/bower_components/jquery-minicolors/css/jquery.minicolors.css")" />
+
+ 
+
+
+
+
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/style.css")">
+
+
+
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/assets/css/jquery.mCustomScrollbar.css")">
+</head>
+
+<body>
+    <!-- Pre-loader start -->
+    <div class="theme-loader">
+        <div class="ball-scale">
+            <div class='contain'>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+                <div class="ring"><div class="frame"></div></div>
+            </div>
+        </div>
+    </div>
+    <!-- Pre-loader end -->
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            @Html.Partial("_header")
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    @Html.Partial("_sidemenu")
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <div class="page-header card">
+                                        <div class="row align-items-end">
+                                            <div class="col-lg-8">
+                                                <div class="page-header-title">
+                                                    <i class="icofont icofont-ui-social-link bg-c-pink card1-icon"></i>
+                                                    <div class="d-inline">
+                                                        <h4>Vehicle User Allocation</h4>
+                                                        <span>
+                                                            Click on the "Allocate Vehicle to User" button to Allocate the below Vehicle to User.
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="page-body">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="card">
+
+                                                    <div class="card-block">
+
+                                                        @foreach (var vehicle in ViewBag.Vehicle)
+                                                {
+
+                                                            <div class="col-lg-6" style="float:left">
+                                                                <h3>@vehicle.Brand <span style="font-size:12px;font-weight:bold"> Manufactured: @Convert.ToDateTime(vehicle.YearofManufacture).ToString("MMM yyyy")</span></h3>
+                                                            </div>
+                                                            <div class="col-lg-1" style="float:right">
+                                                                <a class="pcoded-badge label label-warning pull-right" href="@Url.Content("~/Vehicle/Available")">Change</a>
+                                                            </div>
+
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th>Name</th>
+                                                                    <th>Vehicle Group</th>
+                                                                    <th>Vehicle Type</th>
+                                                                    <th>Registration No.</th>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>@vehicle.VehicleNoName</td>
+                                                                    <td>@vehicle.VehicleGroup</td>
+                                                                    <td>@vehicle.VehicleType</td>
+                                                                    <td>@vehicle.RegistrationNo</td>
+
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4">
+                                                                        <b>Note:-</b><br />
+                                                                        @vehicle.Note
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                }
+
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="card">
+
+                                                    <div class="card-block">
+
+
+                                                        @foreach (var user in ViewBag.User)
+                                                {
+
+                                                            <div class="col-lg-6" style="float:left">
+                                                                <h4>@user.UserName</h4>
+                                                            </div>
+                                                            <div class="col-lg-1" style="float:right">
+                                                                <a class="pcoded-badge label label-warning " href="@Url.Content("~/User/"+user.UserType)">Change</a>
+                                                            </div>
+
+                                                            <br /><br />
+
+                                                            <table class="table">
+                                                                <tr>
+                                                                    <th>@user.UserType</th>
+                                                                    <th>Email ID</th>
+                                                                    <th>National ID</th>
+                                                                    <th>Mobile No.</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        @user.UserName
+                                                                    </td>
+                                                                    <td>@user.EmailID</td>
+                                                                    <td>@user.NationalID</td>
+                                                                    <td>@user.MobileNo</td>
+
+                                                                </tr>
+
+                                                            </table>
+                                                }
+
+                                                    </div>
+                                                </div>
+
+                                                
+                                                    @using (Html.BeginForm())
+                                                    {
+                                                    <div class="card">
+                                                     
+                                                        <div class="card-block">
+                                                            <div class="row">
+                                                                <div class="col-sm-12 col-xl-2 m-b-30">
+                                                                    <h4 class="sub-title">Start Date</h4>
+                                                                    <input id="dropper-default" class="form-control" data-date-format="yyyy/MM/dd" type="text" name="startdate" placeholder="Select your date" /><br />
+                                                                    <input type="hidden" name="userid" value="@ViewBag.UserID" />
+                                                                    <input type="hidden" name="vehicleid" value="@ViewBag.VehicleID" />
+                                                                </div>
+                                                                <div class="col-sm-12 col-xl-6 m-b-30">
+                                                                    <h4 class="sub-title">Notes</h4>
+                                                                    <textarea name="notes" class="col-sm-12"></textarea>
+                                                                </div>
+                                                                <div class="col-sm-12 col-xl-3 m-b-30">
+                                                                    <h4 class="sub-title">&nbsp;</h4>
+                                                                    <button class="btn btn-danger" data-toggle="modal" href="#VehicleGroupModal"><i class="icofont icofont-ui-social-link"></i>Allocate Vehicle to User</button>
+
+                                                                </div>
+                                                            </div>
+                                                             
+                                                        </div>
+                                                    </div>
+                                                    }
+                                                   
+
+                                                
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <br /><br />
+                                </div>
+                                    </div>
+
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/jquery/js/jquery.min.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/jquery-ui/js/jquery-ui.min.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/popper.js/js/popper.min.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/bootstrap/js/bootstrap.min.js")"></script>
+                                    <!-- jquery slimscroll js -->
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/jquery-slimscroll/js/jquery.slimscroll.js")"></script>
+                                    <!-- modernizr js -->
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/modernizr/js/modernizr.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/modernizr/js/css-scrollbars.js")"></script>
+
+                                    <!-- Bootstrap date-time-picker js -->
+                                    <script type="text/javascript" src="@Url.Content("~/assets/pages/advance-elements/moment-with-locales.min.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.min.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/assets/pages/advance-elements/bootstrap-datetimepicker.min.js")"></script>
+                                    <!-- Date-range picker js -->
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/bootstrap-daterangepicker/js/daterangepicker.js")"></script>
+                                    <!-- Date-dropper js -->
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/datedropper/js/datedropper.min.js")"></script>
+                                    <!-- Color picker js -->
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/spectrum/js/spectrum.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/jscolor/js/jscolor.js")"></script>
+                                    <!-- Mini-color js -->
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/jquery-minicolors/js/jquery.minicolors.min.js")"></script>
+                                    <!-- i18next.min.js -->
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/i18next/js/i18next.min.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/i18next-xhr-backend/js/i18nextXHRBackend.min.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/i18next-browser-languagedetector/js/i18nextBrowserLanguageDetector.min.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/bower_components/jquery-i18next/js/jquery-i18next.min.js")"></script>
+                                    <!-- Custom js -->
+
+                                    <script type="text/javascript" src="@Url.Content("~/assets/pages/advance-elements/custom-picker.js")"></script>
+                                    <script src="@Url.Content("~/assets/js/pcoded.min.js")"></script>
+                                    <script src="@Url.Content("~/assets/js/demo-12.js")"></script>
+                                    <script src="@Url.Content("~/assets/js/jquery.mCustomScrollbar.concat.min.js")"></script>
+                                    <script type="text/javascript" src="@Url.Content("~/assets/js/script.js")"></script>
+
+
+                            
+
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+    </div>
+    @if(ViewBag.Allocated == "TRUE") { 
+    <script type="text/javascript">
+    $(window).on('load', function () {
+        $('#ConfirmModal').modal('show');
+    });
+    </script>
+    <div class="modal modal-dialog-center" id="ConfirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+        <div class="modal-dialog ">
+            <div class="modal-content-wrap">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Vehicle User Allocation</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+
+                    </div>
+                    <div class="modal-body">
+                        <p>You've successfully allocated the Vehicle to the User.</p>
+                        <br />
+
+                        <a href="@Url.Content("~/VehicleDetails/"+ViewBag.VehicleID)" class="btn btn-warning btn-round right">Continue</a>
+                        <br />
+                        <br />
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+     
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

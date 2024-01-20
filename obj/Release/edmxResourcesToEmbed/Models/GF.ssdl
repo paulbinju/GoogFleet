@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FleetManagerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Alert_T">
+    <Key>
+      <PropertyRef Name="AlertID" />
+    </Key>
+    <Property Name="AlertID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="VehicleID" Type="int" />
+    <Property Name="Alert" Type="ntext" />
+    <Property Name="DueDate" Type="smalldatetime" />
+    <Property Name="DOC" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="AutoBrand_T">
+    <Key>
+      <PropertyRef Name="AutoBrandID" />
+    </Key>
+    <Property Name="AutoBrandID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="Make" Type="nvarchar" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Bill_T">
+    <Key>
+      <PropertyRef Name="BillID" />
+    </Key>
+    <Property Name="BillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="BillNo" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="BillDate" Type="smalldatetime" />
+    <Property Name="ShopID" Type="int" />
+    <Property Name="VehicleID" Type="int" />
+    <Property Name="Odometer" Type="nvarchar" MaxLength="50" />
+    <Property Name="TotalAmount" Type="numeric" Precision="18" Scale="3" />
+    <Property Name="DOC" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="BillDetails_T">
+    <Key>
+      <PropertyRef Name="BillDetailsID" />
+    </Key>
+    <Property Name="BillDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="BillID" Type="int" />
+    <Property Name="ServicePartsID" Type="int" />
+    <Property Name="Description" Type="ntext" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Amount" Type="numeric" Precision="18" Scale="3" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FleetManager.dbo.EmailCampaign_Australia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EmailCampaign_Australia">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emailid" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FleetManager.dbo.EmailCampaign_CargoME' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EmailCampaign_CargoME">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emailid" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="EmailCampaign_Oman">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emailid" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'FleetManager.dbo.EmailCampaign_RentACarME' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EmailCampaign_RentACarME">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="emailid" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="FleetCompany_T">
+    <Key>
+      <PropertyRef Name="FleetCompanyID" />
+    </Key>
+    <Property Name="FleetCompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nchar" MaxLength="10" />
+    <Property Name="Website" Type="nvarchar" MaxLength="50" />
+    <Property Name="ContactPerson" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Activated" Type="bit" />
+    <Property Name="SPID" Type="nvarchar" MaxLength="8" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" />
+    <Property Name="DOC" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Insurance_T">
+    <Key>
+      <PropertyRef Name="InsuranceID" />
+    </Key>
+    <Property Name="InsuranceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="Insurance" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SalesPerson_T">
+    <Key>
+      <PropertyRef Name="SalesPersonID" />
+    </Key>
+    <Property Name="SalesPersonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UniqueID" Type="uniqueidentifier" />
+    <Property Name="SPID" Type="nvarchar" MaxLength="8" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="City" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+    <Property Name="DOC" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="ServiceParts_T">
+    <Key>
+      <PropertyRef Name="ServicePartsID" />
+    </Key>
+    <Property Name="ServicePartsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="ServicePartName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Shop_T">
+    <Key>
+      <PropertyRef Name="ShopID" />
+    </Key>
+    <Property Name="ShopID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="ShopName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Subscription_T">
+    <Key>
+      <PropertyRef Name="SubscriptionID" />
+    </Key>
+    <Property Name="SubscriptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="StartDate" Type="smalldatetime" />
+    <Property Name="EndDate" Type="smalldatetime" />
+    <Property Name="Trial" Type="bit" />
+  </EntityType>
+  <EntityType Name="TrafficContraventions_T">
+    <Key>
+      <PropertyRef Name="TrafficContraventionID" />
+    </Key>
+    <Property Name="TrafficContraventionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="VehicleID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="TrafficContraventionDate" Type="smalldatetime" />
+    <Property Name="Description" Type="ntext" />
+  </EntityType>
+  <EntityType Name="User_T">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="UserType" Type="char" MaxLength="10" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="NationalID" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="ntext" />
+    <Property Name="DOC" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Vehicle_T">
+    <Key>
+      <PropertyRef Name="VehicleID" />
+    </Key>
+    <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="VehicleNoName" Type="nvarchar" MaxLength="50" />
+    <Property Name="VehicleNo" Type="int" />
+    <Property Name="VehicleGroupID" Type="int" />
+    <Property Name="VehicleTypeID" Type="int" />
+    <Property Name="RegistrationNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="AutoBrandID" Type="int" />
+    <Property Name="YearofManufacture" Type="smalldatetime" />
+    <Property Name="GPSURL" Type="nvarchar(max)" />
+    <Property Name="Note" Type="ntext" />
+    <Property Name="DOC" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="VehicleGroup_T">
+    <Key>
+      <PropertyRef Name="VehicleGroupID" />
+    </Key>
+    <Property Name="VehicleGroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="VehicleGroup" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vehicle-Insurance_T">
+    <Key>
+      <PropertyRef Name="VehicleInsuranceID" />
+    </Key>
+    <Property Name="VehicleInsuranceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="VehicleID" Type="int" />
+    <Property Name="InsuranceID" Type="int" />
+    <Property Name="StartDate" Type="smalldatetime" />
+    <Property Name="EndDate" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="VehicleRegistration_T">
+    <Key>
+      <PropertyRef Name="VehicleRegistrationID" />
+    </Key>
+    <Property Name="VehicleRegistrationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="VehicleID" Type="int" />
+    <Property Name="StartDate" Type="smalldatetime" />
+    <Property Name="EndDate" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="VehicleType_T">
+    <Key>
+      <PropertyRef Name="VehicleTypeID" />
+    </Key>
+    <Property Name="VehicleTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="VehicleType" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Vehicle-User_T">
+    <Key>
+      <PropertyRef Name="VehicleDriverID" />
+    </Key>
+    <Property Name="VehicleDriverID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FleetCompanyID" Type="int" />
+    <Property Name="VehicleID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="StartDate" Type="smalldatetime" />
+    <Property Name="EndDate" Type="smalldatetime" />
+    <Property Name="RatePerDay" Type="decimal" Precision="18" Scale="3" />
+    <Property Name="Note" Type="ntext" />
+    <Property Name="DOC" Type="smalldatetime" />
+  </EntityType>
+  <Function Name="vehiclegroupname" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FleetCompanyID" Type="int" Mode="In" />
+    <Parameter Name="VehicleGroupID" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="FleetManagerModelStoreContainer">
+    <EntitySet Name="Alert_T" EntityType="Self.Alert_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AutoBrand_T" EntityType="Self.AutoBrand_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bill_T" EntityType="Self.Bill_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BillDetails_T" EntityType="Self.BillDetails_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmailCampaign_Oman" EntityType="Self.EmailCampaign_Oman" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FleetCompany_T" EntityType="Self.FleetCompany_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Insurance_T" EntityType="Self.Insurance_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalesPerson_T" EntityType="Self.SalesPerson_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ServiceParts_T" EntityType="Self.ServiceParts_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shop_T" EntityType="Self.Shop_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subscription_T" EntityType="Self.Subscription_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrafficContraventions_T" EntityType="Self.TrafficContraventions_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_T" EntityType="Self.User_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicle_T" EntityType="Self.Vehicle_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleGroup_T" EntityType="Self.VehicleGroup_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicle-Insurance_T" EntityType="Self.Vehicle-Insurance_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleRegistration_T" EntityType="Self.VehicleRegistration_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleType_T" EntityType="Self.VehicleType_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicle-User_T" EntityType="Self.Vehicle-User_T" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmailCampaign_Australia" EntityType="Self.EmailCampaign_Australia" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EmailCampaign_Australia].[id] AS [id], 
+    [EmailCampaign_Australia].[emailid] AS [emailid]
+    FROM [dbo].[EmailCampaign_Australia] AS [EmailCampaign_Australia]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EmailCampaign_CargoME" EntityType="Self.EmailCampaign_CargoME" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EmailCampaign_CargoME].[id] AS [id], 
+    [EmailCampaign_CargoME].[emailid] AS [emailid]
+    FROM [dbo].[EmailCampaign_CargoME] AS [EmailCampaign_CargoME]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EmailCampaign_RentACarME" EntityType="Self.EmailCampaign_RentACarME" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EmailCampaign_RentACarME].[id] AS [id], 
+    [EmailCampaign_RentACarME].[emailid] AS [emailid]
+    FROM [dbo].[EmailCampaign_RentACarME] AS [EmailCampaign_RentACarME]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

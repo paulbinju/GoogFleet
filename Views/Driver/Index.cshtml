@@ -1,0 +1,203 @@
+﻿@model IEnumerable<GoogFleet.Models.Driver_T>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="m-content">
+    <!--Begin::Main Portlet-->
+    <div class="row">
+
+        <div class="col-xl-12">
+            <!--begin:: Widgets/Finance Summary-->
+            <div class="m-portlet m-portlet--full-height m-portlet--fit ">
+                <div class="m-portlet__head">
+                    <div class="m-portlet__head-caption">
+                        <div class="m-portlet__head-title">
+                            <h3 class="m-portlet__head-text">
+                                User (@ViewBag.user)
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="m-portlet__head-tools">
+
+                        <ul class="m-portlet__nav">
+
+                            <li class="m-nav__link m-dropdown__toggle m-nav__item m-topbar__quick-actions m-topbar__quick-actions--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push m-dropdown--mobile-full-width m-dropdown--skin-light" data-dropdown-toggle="click">
+                                <br />
+                                <a class="btn btn-danger" data-toggle="modal" href="#DriverModal">
+                                    <i class="fa fa-plus"></i> Add
+                                </a>
+
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="m-portlet__body">
+                    <script>
+                        $(document).ready(function () { $(".editrow").hide(); });
+                        function openrow(row) { $("#edit-" + row).show(2000); }
+                    </script>
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <div class="m-widget12 m-widget12--chart-bottom m--margin-top-10">
+
+                                <div class="col-md-4">
+                                    <table class="table">
+
+                                        <tr>
+
+                                            <td>
+                                              @ViewBag.user Name
+                                            </td>
+                                            <td>
+                                                Email ID
+                                            </td>
+                                            <td>
+                                                Mobile No
+                                            </td>
+                                            <td>
+                                                Address
+                                            </td>
+
+                                            <td></td>
+                                        </tr>
+
+
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DriverName)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.EmailID)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.MobileNo)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Address)
+                                                </td>
+
+                                                <td>
+                                                    <button onclick="openrow(@item.DriverName)" class="btn btn-primary"><i class="fa fa-pencil"></i> Edit</button>
+
+                                                </td>
+                                            </tr>
+
+                                            using (Html.BeginForm("Edit", "Driver"))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                @Html.ValidationSummary(true)
+                                                <tr id="edit-@item.DriverID" class="editrow">
+
+                                                    <td>
+                                                        <input type="text" name="DriverName" class="form-control" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="EmailID" class="form-control" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="MobileNo" class="form-control" />
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" name="Address" class="form-control" />
+                                                    </td>
+
+                                                    <td>
+                                                        <button class="btn btn-success"><i class="fa fa-check"></i> Update</button>
+                                                        <input type="hidden" name="FleetCompanyID" value="@Session["FleetCompanyID"]" />
+                                                        <input type="hidden" name="DriverID" value="@Html.DisplayFor(modelItem => item.DriverID)" />
+                                                    </td>
+
+                                                    <td></td>
+                                                </tr>
+                                            }
+                                        }
+
+
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane"></div>
+                    </div>
+                </div>
+            </div>
+            <!--end:: Widgets/Finance Summary-->
+        </div>
+
+    </div>
+
+</div>
+
+<div class="modal fade modal-dialog-center" id="DriverModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content-wrap">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Add @ViewBag.user</h4>
+                </div>
+
+                @using (Html.BeginForm("Createx", "Driverx"))
+                {
+                    
+                    <div class="modal-body">
+
+                                                <div class="form-horizontal">
+
+
+
+                            <div class="form-group">
+
+                                <div class="col-md-10">
+                                   @ViewBag.user Name<br />
+                                    <input type="text" class="form-control" name="DriverName" />
+                                    <input type="hidden" name="FleetCompanyID" value="@Session["FleetCompanyID"]" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-10">
+                                    Mobile No.<br />
+                                    <input type="text" class="form-control" name="MobileNo" />
+                                </div>
+                            </div><div class="form-group">
+
+                                <div class="col-md-10">
+                                    Email ID<br />
+                                    <input type="text" class="form-control" name="EmailID" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-md-10">
+                                    Address<br />
+                                    <input type="text" class="form-control" name="Address" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-danger" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <br style="clear:both" />
+                    <div class="modal-footer">
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

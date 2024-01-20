@@ -1,0 +1,144 @@
+﻿@model IEnumerable<GoogFleet.Models.Insurance_T>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="page-header card">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <i class="icofont icofont-protect bg-c-pink card1-icon"></i>
+                <div class="d-inline">
+                    <h4>Insurance</h4>
+                    <span>
+                        Create Insurance companies. This helps to generate reports based on each Insurance company.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-primary" data-toggle="modal" href="#InsuranceModal"><i class="icofont icofont-ui-add"></i>Add Insurance</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="page-body">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+
+                <div class="card-block">
+
+
+                    <table class="table">
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Insurance)
+                                </td>
+                                <td>
+                                    
+                                    <a onclick="openrow(@item.InsuranceID)" style="cursor:pointer" class="pcoded-badge label label-warning"><i class="fa fa-pencil"></i> Edit</a>
+
+                                </td>
+                            </tr>
+                            using (Html.BeginForm("Edit", "Insurance"))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true)
+                                <tr id="edit-@item.InsuranceID" class="editrow">
+                                    <td>
+                                        <input required class="form-control cke_required" type="text" name="Insurance" value="@item.Insurance" />
+                                        <input type="hidden" name="InsuranceID" value="@item.InsuranceID" />
+                                        <input type="hidden" name="FleetCompanyID" value="@Session["FleetCompanyID"]" />
+                                    </td>
+                                    <td>
+
+                                        <button class="pcoded-badge label label-success"><i class="fa fa-check"></i> Update</button>
+
+                                    </td>
+                                </tr>
+                            }
+                        }
+
+
+
+
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<script>
+    $(document).ready(function () { $(".editrow").hide(); });
+    function openrow(row) { $("#edit-" + row).show(2000); }
+</script>
+ 
+
+<div class="modal fade modal-dialog-center" id="InsuranceModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content-wrap">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Add Insurance</h4>
+                </div>
+
+                @using (Html.BeginForm("Create","Insurance"))
+                {
+
+                    <div class="modal-body">
+
+
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                            <div class="form-group">
+                               
+                                <div class="col-md-10">
+                                    Insurance<br />
+                                    <input type="text" class="form-control" name="Insurance" required />
+                                    <input type="hidden" name="FleetCompanyID" value="@Session["FleetCompanyID"]" />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-danger" />
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <br style="clear:both" />
+                    <div class="modal-footer">
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
